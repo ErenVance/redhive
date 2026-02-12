@@ -1,0 +1,40 @@
+html {
+  // 品牌强调色
+  --accent-color: var(--redhive-red) !important;
+  --accent-text-color: var(--primary) !important;
+
+  // 背景
+  --background-color: var(--redhive-bg-deep) !important;
+  --d-content-background: var(--redhive-bg-surface) !important;
+
+  // Header
+  --header_primary-low-mid: color-mix(in srgb, var(--header_primary) 60%, transparent) !important;
+  --header_primary-medium: color-mix(in srgb, var(--header_primary) 80%, transparent) !important;
+
+  // Sidebar
+  --d-sidebar-border-color: var(--redhive-border) !important;
+  --d-sidebar-link-color: color-mix(in srgb, var(--primary) 70%, transparent) !important;
+  --d-sidebar-active-color: var(--redhive-red) !important;
+  --d-sidebar-background: var(--redhive-bg-deep) !important;
+  --d-sidebar-footer-fade: var(--redhive-bg-deep) !important;
+  --d-sidebar-highlight-background: rgba(var(--redhive-red-rgb), 0.08) !important;
+  --d-sidebar-highlight-color: var(--primary) !important;
+
+  // 链接
+  --link-color: var(--redhive-red) !important;
+  --link-color-hover: color-mix(in srgb, var(--redhive-red) 70%, white) !important;
+
+  // 导航
+  --d-nav-color--active: var(--redhive-red) !important;
+  --d-nav-color--hover: var(--redhive-red) !important;
+
+  // 选中
+  --d-selected: rgba(var(--redhive-red-rgb), 0.1) !important;
+  --d-hover: rgba(var(--redhive-red-rgb), 0.06) !important;
+
+  // 输入框
+  --d-input-bg-color: var(--redhive-bg-deep) !important;
+
+  // 按钮
+  --button-box-shadow: rgba(var(--redhive-red-rgb), 0.3) !important;
+}

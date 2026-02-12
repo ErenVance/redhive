@@ -1,0 +1,77 @@
+// CRT 扫描线 — RedHive 核心视觉要求，pointer-events: none 确保不影响交互
+// z-index: 99 低于 header(1000) 和 modal(1700)，不遮挡功能元素
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.03) 2px,
+    rgba(0, 0, 0, 0.03) 4px
+  );
+  pointer-events: none;
+  z-index: 99;
+}
+
+// 蜂巢六边形网格 — 红色，低不透明度
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  // 内联 SVG 六边形 pattern（#ff1744 须与 --redhive-red 保持一致，data URI 不支持 CSS 变量）
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='49' viewBox='0 0 28 49'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23ff1744' fill-opacity='0.08'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L27.99 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-8l12.99-7.5H28v2.31h-.01L17 42.15V49h-2z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+// 霓虹发光效果 — 链接 hover
+a:hover {
+  text-shadow: 0 0 8px rgba(var(--redhive-red-rgb), 0.4);
+}
+
+// Logo 红色发光 + 脉冲
+#site-text-logo {
+  color: var(--redhive-red);
+  text-shadow: 0 0 20px rgba(var(--redhive-red-rgb), 0.5),
+    0 0 40px rgba(var(--redhive-red-rgb), 0.2);
+  animation: redhive-pulse 4s ease-in-out infinite;
+}
+
+@keyframes redhive-pulse {
+  0%,
+  100% {
+    text-shadow: 0 0 20px rgba(var(--redhive-red-rgb), 0.5),
+      0 0 40px rgba(var(--redhive-red-rgb), 0.2);
+  }
+  50% {
+    text-shadow: 0 0 30px rgba(var(--redhive-red-rgb), 0.7),
+      0 0 60px rgba(var(--redhive-red-rgb), 0.3);
+  }
+}
+
+// 滚动条 — WebKit
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--redhive-bg-deep);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--redhive-border);
+  border: 1px solid var(--redhive-bg-deep);
+
+  &:hover {
+    background: rgba(var(--redhive-red-rgb), 0.4);
+  }
+}
+
+// 滚动条 — Firefox
+html {
+  scrollbar-color: var(--redhive-border) var(--redhive-bg-deep);
+  scrollbar-width: thin;
+}

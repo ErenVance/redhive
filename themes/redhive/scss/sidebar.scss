@@ -1,0 +1,48 @@
+@use "lib/viewport";
+
+.sidebar-wrapper {
+  .sidebar-container {
+    border-right: 2px solid var(--redhive-border);
+  }
+
+  .sidebar-section-link {
+    transition: none;
+
+    &:hover,
+    &:focus {
+      background: rgba(var(--redhive-red-rgb), 0.08);
+
+      .d-icon {
+        color: var(--redhive-red);
+      }
+    }
+  }
+
+  // 移动端 sidebar
+  @include viewport.until(lg) {
+    background: var(--redhive-bg-deep);
+
+    .sidebar-footer-wrapper {
+      background: var(--redhive-bg-deep);
+    }
+  }
+}
+
+// Section 边框
+.sidebar-section-wrapper {
+  --d-sidebar-section-border-color: var(--redhive-border);
+}
+
+// Section header
+.sidebar-section-header {
+  font-family: var(--heading-font-family);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: var(--font-down-2);
+}
+
+// 活跃链接
+.sidebar-section-link-wrapper .sidebar-section-link.active {
+  border-left: 3px solid var(--redhive-red);
+  background: rgba(var(--redhive-red-rgb), 0.06);
+}

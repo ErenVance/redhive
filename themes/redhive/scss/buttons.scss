@@ -1,0 +1,58 @@
+// 主按钮 — 红色实心
+.btn-primary {
+  background-color: var(--redhive-red);
+  color: var(--primary);
+  border: 2px solid var(--redhive-red);
+
+  .d-icon {
+    color: var(--primary);
+  }
+}
+
+.discourse-no-touch .btn-primary {
+  &:not([disabled]):hover,
+  &:not([disabled]):focus-visible {
+    background-color: var(--redhive-queen-red);
+    border-color: var(--redhive-queen-red);
+    box-shadow: 0 0 12px rgba(var(--redhive-red-rgb), 0.4);
+    color: var(--primary);
+
+    .d-icon {
+      color: var(--primary);
+    }
+  }
+}
+
+// 默认按钮 — 透明 + 边框
+.discourse-no-touch .btn-default,
+.discourse-no-touch .select-kit .select-kit-header.btn-default {
+  background: transparent;
+  border: 2px solid var(--redhive-border);
+
+  &:hover,
+  &:focus-visible {
+    border-color: var(--redhive-red);
+    box-shadow: 0 0 8px rgba(var(--redhive-red-rgb), 0.2);
+    background: rgba(var(--redhive-red-rgb), 0.05);
+  }
+}
+
+// 危险按钮
+.discourse-no-touch .btn-danger {
+  &:not([disabled]):hover,
+  &:not([disabled]):focus-visible {
+    box-shadow: 0 0 12px rgba(var(--redhive-red-rgb), 0.4);
+  }
+}
+
+// 新帖按钮 — 红色强调
+#create-topic {
+  background-color: var(--redhive-red);
+  color: var(--primary);
+  border: 2px solid var(--redhive-red);
+
+  .discourse-no-touch &:hover {
+    background-color: var(--redhive-queen-red);
+    box-shadow: 0 0 12px rgba(var(--redhive-red-rgb), 0.4);
+  }
+}

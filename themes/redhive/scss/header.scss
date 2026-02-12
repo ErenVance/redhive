@@ -1,0 +1,48 @@
+.d-header {
+  background: var(--redhive-bg-deep);
+  box-shadow: none;
+  border-bottom: 2px solid var(--redhive-border);
+}
+
+// Header 图标 hover 红色发光
+.discourse-no-touch .d-header-icons .icon:hover,
+.discourse-no-touch .d-header-icons .icon:focus {
+  background-color: rgba(var(--redhive-red-rgb), 0.1);
+
+  .d-icon {
+    color: var(--redhive-red);
+  }
+}
+
+// Sidebar toggle hover
+.discourse-no-touch .header-sidebar-toggle button:hover {
+  background-color: rgba(var(--redhive-red-rgb), 0.1);
+
+  .d-icon {
+    color: var(--redhive-red);
+  }
+}
+
+// 通知徽章
+.d-header-icons .badge-notification {
+  background-color: var(--redhive-red);
+  border-color: var(--redhive-bg-deep);
+}
+
+// 搜索框
+.search-menu .search-input,
+.search-menu-container .search-input {
+  border-color: var(--redhive-border);
+  background: var(--redhive-bg-deep);
+
+  &:focus-within {
+    border-color: var(--redhive-red);
+    box-shadow: 0 0 8px rgba(var(--redhive-red-rgb), 0.2);
+  }
+}
+
+// 下拉菜单
+.drop-down-mode .d-header-icons .active .icon {
+  border-color: var(--redhive-red);
+  background-color: rgba(var(--redhive-red-rgb), 0.1);
+}

@@ -1,0 +1,25 @@
+:root {
+  --heading-font-family: "Chakra Petch", sans-serif;
+  --font-family: "JetBrains Mono", monospace;
+}
+
+// Logo — Rubik Glitch
+#site-text-logo {
+  font-family: "Rubik Glitch", cursive;
+  letter-spacing: 2px;
+}
+
+// 标题 — Chakra Petch
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.topic-title,
+.category-name,
+.fancy-title,
+.d-header .title a {
+  font-family: var(--heading-font-family);
+  letter-spacing: 0.5px;
+}

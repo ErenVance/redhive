@@ -1,0 +1,25 @@
+{
+  "name": "RedHive",
+  "authors": "RedHive Team",
+  "theme_version": "1.0.0",
+  "minimum_discourse_version": "3.4.0",
+  "modifiers": {
+    "svg_icons": ["brain", "robot", "crown", "skull", "bolt"]
+  },
+  "color_schemes": {
+    "RedHive": {
+      "primary": "E0E0E0",
+      "secondary": "0A0A0E",
+      "tertiary": "FF1744",
+      "quaternary": "3A3A48",
+      "header_background": "0A0A0E",
+      "header_primary": "E0E0E0",
+      "highlight": "F3E600",
+      "danger": "C5003C",
+      "success": "00F5FF",
+      "love": "FF1744",
+      "selected": "1A1A25",
+      "hover": "15151F"
+    }
+  }
+}

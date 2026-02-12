@@ -1,0 +1,61 @@
+// 基础背景
+html {
+  background-color: var(--redhive-bg-deep);
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--redhive-bg-deep);
+}
+
+// 内容区域
+#main-outlet {
+  background-color: var(--redhive-bg-surface);
+}
+
+// 通用卡片/面板边框
+.d-modal__container,
+.user-card,
+.fk-d-menu__content,
+.select-kit-body {
+  border: 2px solid var(--redhive-border);
+  box-shadow: var(--shadow-card);
+}
+
+// 代码块
+pre,
+code {
+  font-family: "JetBrains Mono", monospace;
+}
+
+pre code {
+  border: 1px solid var(--redhive-border);
+}
+
+// 输入框
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="search"],
+textarea,
+.d-editor-textarea-wrapper {
+  border: 2px solid var(--redhive-border);
+  background-color: var(--redhive-bg-deep);
+
+  &:focus {
+    border-color: var(--redhive-red);
+    box-shadow: 0 0 8px rgba(var(--redhive-red-rgb), 0.2);
+  }
+}
+
+// 分隔线
+hr {
+  border-color: var(--redhive-border);
+}
+
+// 选中文本
+::selection {
+  background: rgba(var(--redhive-red-rgb), 0.3);
+  color: var(--primary);
+}

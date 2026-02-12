@@ -1,0 +1,66 @@
+// Topic 列表
+.topic-list {
+  .topic-list-item {
+    border-bottom-color: var(--redhive-border);
+  }
+
+  // 未读帖子左边红线
+  .topic-list-item.unread .main-link {
+    border-left: 3px solid var(--redhive-red);
+    padding-left: 8px;
+  }
+}
+
+// Topic 标题 hover 发光
+.topic-list-item .link-top-line a.title:hover {
+  text-shadow: 0 0 8px rgba(var(--redhive-red-rgb), 0.3);
+}
+
+// 帖子正文区域
+.topic-body {
+  border-top-color: var(--redhive-border);
+}
+
+// 引用块 — 红色左边框
+blockquote {
+  border-left: 4px solid var(--redhive-red);
+  background: rgba(var(--redhive-red-rgb), 0.03);
+}
+
+// 帖子底部操作栏
+.post-menu-area {
+  border-top: 1px solid var(--redhive-border);
+}
+
+// 点赞按钮 hover
+.discourse-no-touch .actions .like-button:hover {
+  .d-icon {
+    color: var(--redhive-red);
+  }
+}
+
+// 回复区域
+.topic-map {
+  border: 2px solid var(--redhive-border);
+  background: var(--redhive-bg-deep);
+}
+
+// Category 徽章
+.badge-category__wrapper .badge-category {
+  font-family: var(--heading-font-family);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+// 标签
+.discourse-tag {
+  border: 1px solid var(--redhive-border);
+  background: var(--redhive-bg-deep);
+  font-family: "JetBrains Mono", monospace;
+  font-size: var(--font-down-2);
+
+  &:hover {
+    border-color: var(--redhive-red);
+    box-shadow: 0 0 6px rgba(var(--redhive-red-rgb), 0.2);
+  }
+}
