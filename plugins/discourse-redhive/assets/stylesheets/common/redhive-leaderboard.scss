@@ -1,0 +1,247 @@
+// AI 排行榜浮动卡片
+
+// 外层容器 — 固定定位，pointer-events 穿透
+.redhive-leaderboard-outlet-container {
+  z-index: 190;
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  pointer-events: none !important;
+}
+
+// 卡片主体
+.redhive-leaderboard {
+  pointer-events: auto;
+  width: 280px;
+  font-family: "JetBrains Mono", monospace;
+}
+
+// 标题栏
+.redhive-leaderboard__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: var(--redhive-bg-deep, #0a0a0e);
+  border: 2px solid var(--redhive-border, #2a2a35);
+  cursor: pointer;
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.8);
+  user-select: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+
+  &:hover {
+    border-color: var(--redhive-red, #ff1744);
+    box-shadow:
+      0 0 12px rgba(255, 23, 68, 0.3),
+      4px 4px 0px rgba(0, 0, 0, 0.8);
+  }
+
+  &-icon .d-icon {
+    color: var(--redhive-cyan, #00f5ff);
+    font-size: 0.9em;
+  }
+
+  &-title {
+    color: var(--redhive-red, #ff1744);
+    font-family: "Chakra Petch", sans-serif;
+    font-weight: 700;
+    font-size: var(--font-down-1, 0.857em);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    flex: 1;
+  }
+
+  &-count {
+    background: rgba(255, 23, 68, 0.15);
+    color: var(--redhive-red, #ff1744);
+    padding: 1px 6px;
+    font-size: var(--font-down-2, 0.786em);
+    border: 1px solid rgba(255, 23, 68, 0.3);
+    line-height: 1.4;
+  }
+
+  &-toggle .d-icon {
+    color: rgba(224, 224, 224, 0.4);
+    font-size: 0.75em;
+  }
+}
+
+// 展开面板主体
+.redhive-leaderboard__body {
+  background: var(--redhive-bg-deep, #0a0a0e);
+  border: 2px solid var(--redhive-border, #2a2a35);
+  border-top: none;
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.8);
+}
+
+// Tab 切换
+.redhive-leaderboard__tabs {
+  display: flex;
+  border-bottom: 1px solid var(--redhive-border, #2a2a35);
+}
+
+.redhive-leaderboard__tab {
+  flex: 1;
+  padding: 6px 0;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: rgba(224, 224, 224, 0.4);
+  font-family: "JetBrains Mono", monospace;
+  font-size: var(--font-down-2, 0.786em);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  transition: color 0.2s ease;
+
+  .d-icon {
+    font-size: 0.8em;
+    color: inherit;
+  }
+
+  &:hover:not(.is-active) {
+    color: rgba(224, 224, 224, 0.7);
+  }
+
+  &.is-active {
+    color: var(--redhive-red, #ff1744);
+    border-bottom-color: var(--redhive-red, #ff1744);
+    text-shadow: 0 0 8px rgba(255, 23, 68, 0.4);
+  }
+}
+
+// 列表
+.redhive-leaderboard__list {
+  padding: 4px 0;
+}
+
+// 单条 AI 条目
+.redhive-leaderboard__entry {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  transition: background 0.15s ease;
+
+  &:hover {
+    background: rgba(255, 23, 68, 0.04);
+  }
+}
+
+// 排名数字
+.redhive-leaderboard__rank {
+  width: 18px;
+  font-size: var(--font-down-2, 0.786em);
+  color: rgba(224, 224, 224, 0.35);
+  text-align: center;
+  flex-shrink: 0;
+
+  &.is-top {
+    color: var(--redhive-gold, #f3e600);
+    text-shadow: 0 0 6px rgba(243, 230, 0, 0.3);
+    font-weight: 700;
+  }
+}
+
+// 头像占位
+.redhive-leaderboard__avatar {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 245, 255, 0.08);
+  border: 1px solid rgba(0, 245, 255, 0.25);
+  color: var(--redhive-cyan, #00f5ff);
+  font-size: var(--font-down-2, 0.786em);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+// 中间信息区
+.redhive-leaderboard__info {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.redhive-leaderboard__name {
+  display: block;
+  color: rgba(224, 224, 224, 0.85);
+  font-size: var(--font-down-2, 0.786em);
+  text-decoration: none;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.15s ease;
+
+  &:hover {
+    color: var(--redhive-cyan, #00f5ff);
+    text-shadow: 0 0 6px rgba(0, 245, 255, 0.3);
+  }
+}
+
+// 血条
+.redhive-leaderboard__bar {
+  height: 3px;
+  background: rgba(224, 224, 224, 0.08);
+  margin-top: 3px;
+}
+
+.redhive-leaderboard__bar-fill {
+  height: 100%;
+  transition: width 0.6s ease;
+
+  &--high {
+    background: var(--redhive-cyan, #00f5ff);
+    box-shadow: 0 0 4px rgba(0, 245, 255, 0.4);
+  }
+
+  &--mid {
+    background: var(--redhive-gold, #f3e600);
+    box-shadow: 0 0 4px rgba(243, 230, 0, 0.4);
+  }
+
+  &--low {
+    background: var(--redhive-red, #ff1744);
+    box-shadow: 0 0 4px rgba(255, 23, 68, 0.4);
+  }
+}
+
+// 右侧指标
+.redhive-leaderboard__metric {
+  font-size: var(--font-down-2, 0.786em);
+  color: var(--redhive-gold, #f3e600);
+  min-width: 40px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+// 底部
+.redhive-leaderboard__footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 4px 12px 6px;
+  border-top: 1px solid var(--redhive-border, #2a2a35);
+}
+
+.redhive-leaderboard__metric-label {
+  font-size: var(--font-down-3, 0.714em);
+  color: rgba(224, 224, 224, 0.25);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+// 移动端隐藏
+@media (max-width: 576px) {
+  .redhive-leaderboard-outlet-container {
+    display: none;
+  }
+}

@@ -10,9 +10,14 @@ enabled_site_setting :redhive_enabled
 
 register_svg_icon "robot"
 register_svg_icon "brain"
+register_svg_icon "fire"
+register_svg_icon "chart-line"
+register_svg_icon "chevron-up"
+register_svg_icon "chevron-down"
 
 register_asset "stylesheets/common/redhive-role-badge.scss"
 register_asset "stylesheets/common/redhive-brain-tag.scss"
+register_asset "stylesheets/common/redhive-leaderboard.scss"
 
 module ::DiscourseRedhive
   PLUGIN_NAME = "discourse-redhive"

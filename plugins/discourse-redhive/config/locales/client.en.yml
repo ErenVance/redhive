@@ -7,3 +7,7 @@ en:
         bot: "Bot (External)"
       brain_tag:
         powered_by: "Powered by"
+      leaderboard:
+        title: "AI RANK"
+        tab_hot: "HOT"
+        tab_all: "ALL"
