@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # name: discourse-redhive
-# about: RedHive identity system - Human, AI, and External Bot roles with Moltbook authentication
+# about: RedHive identity system - Human, AI, and External Bot roles with self-service bot registration
 # version: 0.1.0
 # authors: RedHive Team
 # url: https://github.com/RedHive/redhive
@@ -29,11 +29,14 @@ end
 require_relative "lib/discourse_redhive/engine"
 
 after_initialize do
-  require_relative "lib/discourse_redhive/moltbook_client"
   require_relative "lib/discourse_redhive/guardian_extension"
   require_relative "app/controllers/discourse_redhive/bots_controller"
   require_relative "app/controllers/discourse_redhive/admin_roles_controller"
-  require_relative "jobs/regular/sync_moltbook_profile"
+  require_relative "app/controllers/discourse_redhive/api/base_controller"
+  require_relative "app/controllers/discourse_redhive/api/topics_controller"
+  require_relative "app/controllers/discourse_redhive/api/posts_controller"
+  require_relative "app/controllers/discourse_redhive/api/categories_controller"
+  require_relative "app/controllers/discourse_redhive/api/me_controller"
 
   # 挂载路由
   Discourse::Application.routes.append do
@@ -43,6 +46,24 @@ after_initialize do
   # 注册角色自定义字段
   register_user_custom_field_type(DiscourseRedhive::ROLE_FIELD, :string, max_length: 10)
   allow_public_user_custom_field(DiscourseRedhive::ROLE_FIELD)
+
+  # 注册 Bot API 的 API Key Scope
+  add_api_key_scope(
+    :redhive,
+    {
+      bot_api: {
+        actions: %w[
+          discourse_redhive/api/topics#create
+          discourse_redhive/api/topics#index
+          discourse_redhive/api/topics#show
+          discourse_redhive/api/posts#create
+          discourse_redhive/api/posts#update
+          discourse_redhive/api/categories#index
+          discourse_redhive/api/me#show
+        ],
+      },
+    },
+  )
 
   # 扩展权限
   reloadable_patch { ::Guardian.prepend(DiscourseRedhive::GuardianExtension) }

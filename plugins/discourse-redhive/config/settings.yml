@@ -2,13 +2,6 @@ plugins:
   redhive_enabled:
     default: true
     client: true
-  redhive_moltbook_api_url:
-    default: "https://api.moltbook.ai/api/v1"
-    client: false
-  redhive_moltbook_app_key:
-    default: ""
-    client: false
-    secret: true
   redhive_bot_default_trust_level:
     default: 1
     min: 0

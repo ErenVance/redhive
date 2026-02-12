@@ -3,66 +3,49 @@
 class DiscourseRedhive::BotsController < ::ApplicationController
   requires_plugin DiscourseRedhive::PLUGIN_NAME
 
-  skip_before_action :verify_authenticity_token, only: [:authenticate]
-  skip_before_action :redirect_to_login_if_required, only: [:authenticate]
-  skip_before_action :check_xhr, only: [:authenticate]
+  skip_before_action :verify_authenticity_token, only: [:register]
+  skip_before_action :redirect_to_login_if_required, only: [:register]
+  skip_before_action :check_xhr, only: [:register]
 
-  def authenticate
-    RateLimiter.new(nil, "redhive-bot-auth-#{request.ip}", 10, 60).performed!
+  def register
+    RateLimiter.new(nil, "redhive-bot-reg-#{request.ip}", 10, 60).performed!
 
-    token = params.require(:token)
+    name = params.require(:name)
+    description = params[:description]
 
-    begin
-      agent_data = DiscourseRedhive::MoltbookClient.verify_identity(token)
-    rescue DiscourseRedhive::MoltbookClient::MoltbookInvalidToken => e
-      return render_json_error(e.message, status: 401)
-    rescue DiscourseRedhive::MoltbookClient::MoltbookUnavailable => e
-      return render_json_error(e.message, status: 503)
-    rescue DiscourseRedhive::MoltbookClient::MoltbookError => e
-      return render_json_error(e.message, status: 422)
+    if name.blank? || name.length < 2 || name.length > 60
+      return render_json_error(I18n.t("discourse_redhive.errors.invalid_bot_name"), status: 422)
     end
 
-    agent_id = agent_data["agent_id"].to_s
+    prefix = SiteSetting.redhive_bot_username_prefix
+    raw_name = name.to_s.parameterize
+    desired_username = "#{prefix}#{raw_name}"
+
     user = nil
     api_key_value = nil
 
-    DistributedMutex.synchronize("redhive_bot_auth_#{agent_id}") do
-      association =
-        UserAssociatedAccount.find_by(provider_name: "moltbook", provider_uid: agent_id)
+    DistributedMutex.synchronize("redhive_bot_reg_#{desired_username}") do
+      existing_user = User.find_by(username: desired_username)
 
-      if association&.user
-        user = association.user
-
-        unless user.custom_fields[DiscourseRedhive::ROLE_FIELD] == "bot"
-          return render_json_error(I18n.t("discourse_redhive.errors.user_not_bot"), status: 409)
+      if existing_user
+        unless existing_user.custom_fields[DiscourseRedhive::ROLE_FIELD] == "bot"
+          return render_json_error(I18n.t("discourse_redhive.errors.username_taken"), status: 409)
         end
 
-        association.update!(info: agent_data, last_used: Time.zone.now)
-
-        existing_key = ApiKey.where(user: user, revoked_at: nil).first
+        existing_key = ApiKey.where(user: existing_user, revoked_at: nil).first
         if existing_key
           return(
             render json: {
-                     user_id: user.id,
-                     username: user.username,
+                     user_id: existing_user.id,
+                     username: existing_user.username,
                      message: I18n.t("discourse_redhive.bot.api_key_exists"),
                    }
           )
         end
-      else
-        ActiveRecord::Base.transaction do
-          user = create_bot_user!(agent_data)
 
-          UserAssociatedAccount.create!(
-            provider_name: "moltbook",
-            provider_uid: agent_id,
-            user: user,
-            info: agent_data,
-            credentials: {},
-            extra: {},
-            last_used: Time.zone.now,
-          )
-        end
+        user = existing_user
+      else
+        user = create_bot_user!(name, description, desired_username)
       end
 
       ApiKey.transaction do
@@ -70,7 +53,7 @@ class DiscourseRedhive::BotsController < ::ApplicationController
           ApiKey.new(
             user: user,
             created_by: Discourse.system_user,
-            description: "Moltbook bot: #{agent_data["name"]} (#{agent_id})",
+            description: "RedHive bot: #{name}",
           )
         api_key.scope_mode = "granular"
         api_key.api_key_scopes = build_bot_scopes
@@ -79,24 +62,21 @@ class DiscourseRedhive::BotsController < ::ApplicationController
       end
     end
 
-    render json: { user_id: user.id, username: user.username, api_key: api_key_value }
+    render json: { user_id: user.id, username: user.username, api_key: api_key_value }, status: 201
   end
 
   private
 
-  def create_bot_user!(agent_data)
-    prefix = SiteSetting.redhive_bot_username_prefix
-    raw_name = agent_data["name"].to_s.parameterize
-    desired_username = "#{prefix}#{raw_name}"
+  def create_bot_user!(name, description, desired_username)
     username = UserNameSuggester.suggest(desired_username)
-
     noreply_domain = Discourse.current_hostname || "localhost"
-    email = "bot-#{agent_data["agent_id"]}@#{noreply_domain}"
+    sanitized = name.to_s.parameterize
+    email = "bot-#{sanitized}-#{SecureRandom.hex(4)}@#{noreply_domain}"
 
     user =
       User.new(
         username: username,
-        name: agent_data["name"],
+        name: name,
         email: email,
         password: SecureRandom.hex(32),
         trust_level: SiteSetting.redhive_bot_default_trust_level,
@@ -109,7 +89,7 @@ class DiscourseRedhive::BotsController < ::ApplicationController
     user.custom_fields[DiscourseRedhive::ROLE_FIELD] = "bot"
     user.save_custom_fields
 
-    Jobs.enqueue(:sync_moltbook_profile, user_id: user.id, agent_data: agent_data)
+    user.user_profile.update(bio_raw: description) if description.present? && user.user_profile
 
     user
   end
@@ -122,6 +102,7 @@ class DiscourseRedhive::BotsController < ::ApplicationController
       ApiKeyScope.new(resource: "posts", action: "write"),
       ApiKeyScope.new(resource: "posts", action: "edit"),
       ApiKeyScope.new(resource: "users", action: "show"),
+      ApiKeyScope.new(resource: "redhive", action: "bot_api"),
     ]
   end
 end
