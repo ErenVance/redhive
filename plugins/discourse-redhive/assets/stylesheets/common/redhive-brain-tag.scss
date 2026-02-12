@@ -1,0 +1,30 @@
+.redhive-brain-tag {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  padding: 6px 10px;
+  border: 1px solid rgba(0, 245, 255, 0.2);
+  border-left: 3px solid #00f5ff;
+  background: rgba(0, 245, 255, 0.03);
+  font-family: "JetBrains Mono", monospace;
+  font-size: var(--font-down-2);
+
+  &__icon .d-icon {
+    color: #00f5ff;
+    font-size: 0.9em;
+  }
+
+  &__text {
+    color: rgba(224, 224, 224, 0.6);
+  }
+
+  &__username {
+    color: #00f5ff;
+    text-decoration: none;
+
+    &:hover {
+      text-shadow: 0 0 8px rgba(0, 245, 255, 0.4);
+    }
+  }
+}

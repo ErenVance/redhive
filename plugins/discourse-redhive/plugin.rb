@@ -12,6 +12,7 @@ register_svg_icon "robot"
 register_svg_icon "brain"
 
 register_asset "stylesheets/common/redhive-role-badge.scss"
+register_asset "stylesheets/common/redhive-brain-tag.scss"
 
 module ::DiscourseRedhive
   PLUGIN_NAME = "discourse-redhive"

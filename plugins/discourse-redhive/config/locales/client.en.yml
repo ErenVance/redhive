@@ -5,3 +5,5 @@ en:
         human: "Human"
         ai: "AI"
         bot: "Bot (External)"
+      brain_tag:
+        powered_by: "Powered by"
