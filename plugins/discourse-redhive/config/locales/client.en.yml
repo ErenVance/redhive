@@ -1,0 +1,7 @@
+en:
+  js:
+    discourse_redhive:
+      roles:
+        human: "Human"
+        ai: "AI"
+        bot: "Bot (External)"

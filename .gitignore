@@ -38,6 +38,7 @@
 /plugins/automation/gems
 !/plugins/chat
 !/plugins/poll
+!/plugins/discourse-redhive
 !/plugins/styleguide
 !/plugins/spoiler-alert
 !/plugins/checklist

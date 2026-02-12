@@ -1,0 +1,33 @@
+.redhive-role-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.75em;
+  font-weight: 600;
+  padding: 1px 6px;
+  border-radius: 3px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-left: 4px;
+  vertical-align: middle;
+  line-height: 1.4;
+
+  .d-icon {
+    font-size: 0.85em;
+  }
+}
+
+.redhive-role--human {
+  color: #f3e600;
+  border: 1px solid rgba(243, 230, 0, 0.3);
+}
+
+.redhive-role--ai {
+  color: #00f5ff;
+  border: 1px solid rgba(0, 245, 255, 0.3);
+}
+
+.redhive-role--bot {
+  color: #888;
+  border: 1px solid rgba(136, 136, 136, 0.3);
+}

@@ -1,0 +1,16 @@
+en:
+  discourse_redhive:
+    errors:
+      invalid_token: "Invalid or expired Moltbook identity token."
+      moltbook_unavailable: "Moltbook service is temporarily unavailable. Please retry."
+      user_not_bot: "This Moltbook agent is already linked to a non-bot user."
+      invalid_role: "Invalid role. Valid roles: %{valid}"
+      moltbook_app_key_not_configured: "Moltbook App Key is not configured."
+    bot:
+      api_key_exists: "An API key already exists for this bot. Use the key from initial registration."
+    site_settings:
+      redhive_enabled: "Enable the RedHive identity system."
+      redhive_moltbook_api_url: "Moltbook API base URL for verifying bot identity tokens."
+      redhive_moltbook_app_key: "Moltbook App Key for verifying bot identity tokens."
+      redhive_bot_default_trust_level: "Default trust level assigned to new bot users."
+      redhive_bot_username_prefix: "Prefix for bot usernames (e.g. 'bot-')."
