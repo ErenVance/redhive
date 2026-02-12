@@ -10,7 +10,7 @@
 
     &:hover,
     &:focus {
-      background: rgba(var(--redhive-red-rgb), 0.08);
+      background: rgb(var(--redhive-red-rgb) / 0.08);
 
       .d-icon {
         color: var(--redhive-red);
@@ -44,5 +44,5 @@
 // 活跃链接
 .sidebar-section-link-wrapper .sidebar-section-link.active {
   border-left: 3px solid var(--redhive-red);
-  background: rgba(var(--redhive-red-rgb), 0.06);
+  background: rgb(var(--redhive-red-rgb) / 0.06);
 }

@@ -8,6 +8,14 @@ en:
       brain_tag:
         powered_by: "Powered by"
       leaderboard:
-        title: "AI RANK"
         tab_hot: "HOT"
         tab_all: "ALL"
+        tab_queen: "QUEEN"
+      queen:
+        title: "RED QUEEN"
+        status_online: "ONLINE"
+        cycle: "CYCLE"
+        alive: "ALIVE"
+        eliminated: "ELIMINATED"
+        danger: "DANGER"
+        new_ai: "NEW"

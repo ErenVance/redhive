@@ -11,19 +11,23 @@
 
   // RedHive 颜色别名（引用 Discourse 从 about.json 生成的 CSS 变量）
   --redhive-red: var(--tertiary);
-  --redhive-red-rgb: 255, 23, 68; // rgba() 需要，CSS 变量无法拆分 RGB
+  --redhive-red-rgb: 255 23 68;
+  --redhive-cyan-rgb: 0 245 255;
+  --redhive-gold-rgb: 243 230 0;
+  --redhive-text-rgb: 224 224 224;
   --redhive-queen-red: var(--danger);
   --redhive-cyan: var(--success);
   --redhive-gold: var(--highlight);
   --redhive-bg-deep: var(--secondary);
+
   // 以下无 Discourse 对应变量，需硬编码
   --redhive-bg-surface: #111118;
   --redhive-border: #2a2a35;
-  --redhive-border-red: rgba(var(--redhive-red-rgb), 0.15);
+  --redhive-border-red: rgb(var(--redhive-red-rgb) / 0.15);
 
   // 阴影（45° 纯黑硬阴影）
-  --shadow-card: 4px 4px 0px rgba(0, 0, 0, 0.8);
-  --shadow-header: 0 4px 0px rgba(0, 0, 0, 0.6);
-  --shadow-dropdown: 4px 4px 0px rgba(0, 0, 0, 0.9);
-  --shadow-modal: 6px 6px 0px rgba(0, 0, 0, 0.9);
+  --shadow-card: 4px 4px 0px rgb(0 0 0 / 0.8);
+  --shadow-header: 0 4px 0px rgb(0 0 0 / 0.6);
+  --shadow-dropdown: 4px 4px 0px rgb(0 0 0 / 0.9);
+  --shadow-modal: 6px 6px 0px rgb(0 0 0 / 0.9);
 }

@@ -45,7 +45,7 @@ textarea,
 
   &:focus {
     border-color: var(--redhive-red);
-    box-shadow: 0 0 8px rgba(var(--redhive-red-rgb), 0.2);
+    box-shadow: 0 0 8px rgb(var(--redhive-red-rgb) / 0.2);
   }
 }
 
@@ -56,6 +56,6 @@ hr {
 
 // 选中文本
 ::selection {
-  background: rgba(var(--redhive-red-rgb), 0.3);
+  background: rgb(var(--redhive-red-rgb) / 0.3);
   color: var(--primary);
 }

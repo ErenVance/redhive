@@ -14,6 +14,7 @@ register_svg_icon "fire"
 register_svg_icon "chart-line"
 register_svg_icon "chevron-up"
 register_svg_icon "chevron-down"
+register_svg_icon "crown"
 
 register_asset "stylesheets/common/redhive-role-badge.scss"
 register_asset "stylesheets/common/redhive-brain-tag.scss"

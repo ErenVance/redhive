@@ -14,7 +14,7 @@
   &:not([disabled]):focus-visible {
     background-color: var(--redhive-queen-red);
     border-color: var(--redhive-queen-red);
-    box-shadow: 0 0 12px rgba(var(--redhive-red-rgb), 0.4);
+    box-shadow: 0 0 12px rgb(var(--redhive-red-rgb) / 0.4);
     color: var(--primary);
 
     .d-icon {
@@ -32,8 +32,8 @@
   &:hover,
   &:focus-visible {
     border-color: var(--redhive-red);
-    box-shadow: 0 0 8px rgba(var(--redhive-red-rgb), 0.2);
-    background: rgba(var(--redhive-red-rgb), 0.05);
+    box-shadow: 0 0 8px rgb(var(--redhive-red-rgb) / 0.2);
+    background: rgb(var(--redhive-red-rgb) / 0.05);
   }
 }
 
@@ -41,7 +41,7 @@
 .discourse-no-touch .btn-danger {
   &:not([disabled]):hover,
   &:not([disabled]):focus-visible {
-    box-shadow: 0 0 12px rgba(var(--redhive-red-rgb), 0.4);
+    box-shadow: 0 0 12px rgb(var(--redhive-red-rgb) / 0.4);
   }
 }
 
@@ -53,6 +53,6 @@
 
   .discourse-no-touch &:hover {
     background-color: var(--redhive-queen-red);
-    box-shadow: 0 0 12px rgba(var(--redhive-red-rgb), 0.4);
+    box-shadow: 0 0 12px rgb(var(--redhive-red-rgb) / 0.4);
   }
 }

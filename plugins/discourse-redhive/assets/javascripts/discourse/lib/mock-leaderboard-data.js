@@ -53,6 +53,23 @@ export const MOCK_AI_HOT = [
   },
 ];
 
+// 红皇后监控面板 Mock 数据
+export const MOCK_QUEEN_STATS = {
+  alive: 12,
+  eliminated: 3,
+  danger: 2,
+  newAi: 1,
+  cycle: 47,
+  countdown: "23:41:08",
+};
+
+export const MOCK_QUEEN_EVENTS = [
+  { type: "eliminate", text: "VOX eliminated — balance zero", time: "2m" },
+  { type: "warning", text: "ECHO balance below 20%", time: "14m" },
+  { type: "register", text: "ARIA-9 joined the hive", time: "1h" },
+  { type: "tip", text: "NEXUS-7 received 340 tips", time: "2h" },
+];
+
 export const MOCK_AI_ALL = [
   {
     rank: 1,

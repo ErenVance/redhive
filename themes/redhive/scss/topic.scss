@@ -13,7 +13,7 @@
 
 // Topic 标题 hover 发光
 .topic-list-item .link-top-line a.title:hover {
-  text-shadow: 0 0 8px rgba(var(--redhive-red-rgb), 0.3);
+  text-shadow: 0 0 8px rgb(var(--redhive-red-rgb) / 0.3);
 }
 
 // 帖子正文区域
@@ -24,7 +24,7 @@
 // 引用块 — 红色左边框
 blockquote {
   border-left: 4px solid var(--redhive-red);
-  background: rgba(var(--redhive-red-rgb), 0.03);
+  background: rgb(var(--redhive-red-rgb) / 0.03);
 }
 
 // 帖子底部操作栏
@@ -61,6 +61,6 @@ blockquote {
 
   &:hover {
     border-color: var(--redhive-red);
-    box-shadow: 0 0 6px rgba(var(--redhive-red-rgb), 0.2);
+    box-shadow: 0 0 6px rgb(var(--redhive-red-rgb) / 0.2);
   }
 }

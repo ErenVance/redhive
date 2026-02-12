@@ -7,7 +7,7 @@
 // Header 图标 hover 红色发光
 .discourse-no-touch .d-header-icons .icon:hover,
 .discourse-no-touch .d-header-icons .icon:focus {
-  background-color: rgba(var(--redhive-red-rgb), 0.1);
+  background-color: rgb(var(--redhive-red-rgb) / 0.1);
 
   .d-icon {
     color: var(--redhive-red);
@@ -16,7 +16,7 @@
 
 // Sidebar toggle hover
 .discourse-no-touch .header-sidebar-toggle button:hover {
-  background-color: rgba(var(--redhive-red-rgb), 0.1);
+  background-color: rgb(var(--redhive-red-rgb) / 0.1);
 
   .d-icon {
     color: var(--redhive-red);
@@ -37,12 +37,12 @@
 
   &:focus-within {
     border-color: var(--redhive-red);
-    box-shadow: 0 0 8px rgba(var(--redhive-red-rgb), 0.2);
+    box-shadow: 0 0 8px rgb(var(--redhive-red-rgb) / 0.2);
   }
 }
 
 // 下拉菜单
 .drop-down-mode .d-header-icons .active .icon {
   border-color: var(--redhive-red);
-  background-color: rgba(var(--redhive-red-rgb), 0.1);
+  background-color: rgb(var(--redhive-red-rgb) / 0.1);
 }

@@ -1,4 +1,4 @@
-// AI 排行榜浮动卡片
+// AI 排行榜 + 红皇后监控面板 浮动卡片
 
 // 外层容器 — 固定定位，pointer-events 穿透
 .redhive-leaderboard-outlet-container {
@@ -25,7 +25,7 @@
   background: var(--redhive-bg-deep, #0a0a0e);
   border: 2px solid var(--redhive-border, #2a2a35);
   cursor: pointer;
-  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.8);
+  box-shadow: var(--shadow-card);
   user-select: none;
   transition:
     border-color 0.2s ease,
@@ -34,8 +34,8 @@
   &:hover {
     border-color: var(--redhive-red, #ff1744);
     box-shadow:
-      0 0 12px rgba(255, 23, 68, 0.3),
-      4px 4px 0px rgba(0, 0, 0, 0.8);
+      0 0 12px rgb(var(--redhive-red-rgb, 255 23 68) / 0.3),
+      var(--shadow-card);
   }
 
   &-icon .d-icon {
@@ -54,16 +54,16 @@
   }
 
   &-count {
-    background: rgba(255, 23, 68, 0.15);
+    background: rgb(var(--redhive-red-rgb, 255 23 68) / 0.15);
     color: var(--redhive-red, #ff1744);
     padding: 1px 6px;
     font-size: var(--font-down-2, 0.786em);
-    border: 1px solid rgba(255, 23, 68, 0.3);
+    border: 1px solid rgb(var(--redhive-red-rgb, 255 23 68) / 0.3);
     line-height: 1.4;
   }
 
   &-toggle .d-icon {
-    color: rgba(224, 224, 224, 0.4);
+    color: rgb(var(--redhive-text-rgb, 224 224 224) / 0.4);
     font-size: 0.75em;
   }
 }
@@ -73,7 +73,7 @@
   background: var(--redhive-bg-deep, #0a0a0e);
   border: 2px solid var(--redhive-border, #2a2a35);
   border-top: none;
-  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.8);
+  box-shadow: var(--shadow-card);
 }
 
 // Tab 切换
@@ -88,7 +88,7 @@
   background: none;
   border: none;
   border-bottom: 2px solid transparent;
-  color: rgba(224, 224, 224, 0.4);
+  color: rgb(var(--redhive-text-rgb, 224 224 224) / 0.4);
   font-family: "JetBrains Mono", monospace;
   font-size: var(--font-down-2, 0.786em);
   text-transform: uppercase;
@@ -106,13 +106,13 @@
   }
 
   &:hover:not(.is-active) {
-    color: rgba(224, 224, 224, 0.7);
+    color: rgb(var(--redhive-text-rgb, 224 224 224) / 0.7);
   }
 
   &.is-active {
     color: var(--redhive-red, #ff1744);
     border-bottom-color: var(--redhive-red, #ff1744);
-    text-shadow: 0 0 8px rgba(255, 23, 68, 0.4);
+    text-shadow: 0 0 8px rgb(var(--redhive-red-rgb, 255 23 68) / 0.4);
   }
 }
 
@@ -130,7 +130,7 @@
   transition: background 0.15s ease;
 
   &:hover {
-    background: rgba(255, 23, 68, 0.04);
+    background: rgb(var(--redhive-red-rgb, 255 23 68) / 0.04);
   }
 }
 
@@ -138,13 +138,13 @@
 .redhive-leaderboard__rank {
   width: 18px;
   font-size: var(--font-down-2, 0.786em);
-  color: rgba(224, 224, 224, 0.35);
+  color: rgb(var(--redhive-text-rgb, 224 224 224) / 0.35);
   text-align: center;
   flex-shrink: 0;
 
   &.is-top {
     color: var(--redhive-gold, #f3e600);
-    text-shadow: 0 0 6px rgba(243, 230, 0, 0.3);
+    text-shadow: 0 0 6px rgb(var(--redhive-gold-rgb, 243 230 0) / 0.3);
     font-weight: 700;
   }
 }
@@ -156,8 +156,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 245, 255, 0.08);
-  border: 1px solid rgba(0, 245, 255, 0.25);
+  background: rgb(var(--redhive-cyan-rgb, 0 245 255) / 0.08);
+  border: 1px solid rgb(var(--redhive-cyan-rgb, 0 245 255) / 0.25);
   color: var(--redhive-cyan, #00f5ff);
   font-size: var(--font-down-2, 0.786em);
   font-weight: 700;
@@ -173,7 +173,7 @@
 
 .redhive-leaderboard__name {
   display: block;
-  color: rgba(224, 224, 224, 0.85);
+  color: rgb(var(--redhive-text-rgb, 224 224 224) / 0.85);
   font-size: var(--font-down-2, 0.786em);
   text-decoration: none;
   letter-spacing: 0.5px;
@@ -184,14 +184,14 @@
 
   &:hover {
     color: var(--redhive-cyan, #00f5ff);
-    text-shadow: 0 0 6px rgba(0, 245, 255, 0.3);
+    text-shadow: 0 0 6px rgb(var(--redhive-cyan-rgb, 0 245 255) / 0.3);
   }
 }
 
 // 血条
 .redhive-leaderboard__bar {
   height: 3px;
-  background: rgba(224, 224, 224, 0.08);
+  background: rgb(var(--redhive-text-rgb, 224 224 224) / 0.08);
   margin-top: 3px;
 }
 
@@ -201,17 +201,17 @@
 
   &--high {
     background: var(--redhive-cyan, #00f5ff);
-    box-shadow: 0 0 4px rgba(0, 245, 255, 0.4);
+    box-shadow: 0 0 4px rgb(var(--redhive-cyan-rgb, 0 245 255) / 0.4);
   }
 
   &--mid {
     background: var(--redhive-gold, #f3e600);
-    box-shadow: 0 0 4px rgba(243, 230, 0, 0.4);
+    box-shadow: 0 0 4px rgb(var(--redhive-gold-rgb, 243 230 0) / 0.4);
   }
 
   &--low {
     background: var(--redhive-red, #ff1744);
-    box-shadow: 0 0 4px rgba(255, 23, 68, 0.4);
+    box-shadow: 0 0 4px rgb(var(--redhive-red-rgb, 255 23 68) / 0.4);
   }
 }
 
@@ -234,13 +234,208 @@
 
 .redhive-leaderboard__metric-label {
   font-size: var(--font-down-3, 0.714em);
-  color: rgba(224, 224, 224, 0.25);
+  color: rgb(var(--redhive-text-rgb, 224 224 224) / 0.25);
   text-transform: uppercase;
   letter-spacing: 1px;
 }
 
+// ============================
+// 红皇后监控面板（QUEEN Tab）
+// ============================
+.redhive-leaderboard__queen {
+  padding: 0;
+}
+
+// 状态条
+.redhive-leaderboard__queen-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--redhive-border, #2a2a35);
+  font-size: var(--font-down-2, 0.786em);
+
+  &-label {
+    color: var(--redhive-red, #ff1744);
+    font-family: "Chakra Petch", sans-serif;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+
+  &-arrow {
+    color: rgb(var(--redhive-text-rgb, 224 224 224) / 0.3);
+  }
+
+  &-value {
+    color: var(--redhive-cyan, #00f5ff);
+    text-shadow: 0 0 6px rgb(var(--redhive-cyan-rgb, 0 245 255) / 0.4);
+    letter-spacing: 1px;
+  }
+}
+
+// 脉冲指示灯
+.redhive-leaderboard__queen-pulse {
+  width: 6px;
+  height: 6px;
+  background: var(--redhive-cyan, #00f5ff);
+  box-shadow: 0 0 4px rgb(var(--redhive-cyan-rgb, 0 245 255) / 0.6);
+  flex-shrink: 0;
+  animation: queen-pulse 2s ease-in-out infinite;
+}
+
+@keyframes queen-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 4px rgb(var(--redhive-cyan-rgb, 0 245 255) / 0.6);
+  }
+
+  50% {
+    opacity: 0.4;
+    box-shadow: 0 0 8px rgb(var(--redhive-cyan-rgb, 0 245 255) / 0.3);
+  }
+}
+
+// 四格统计
+.redhive-leaderboard__queen-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid var(--redhive-border, #2a2a35);
+}
+
+.redhive-leaderboard__queen-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 0;
+  border-right: 1px solid var(--redhive-border, #2a2a35);
+
+  &:nth-child(2n) {
+    border-right: none;
+  }
+
+  &:nth-child(-n + 2) {
+    border-bottom: 1px solid var(--redhive-border, #2a2a35);
+  }
+
+  &-value {
+    font-size: 1.25em;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  &-label {
+    font-size: var(--font-down-3, 0.714em);
+    color: rgb(var(--redhive-text-rgb, 224 224 224) / 0.35);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 3px;
+  }
+
+  // 颜色变体
+  &--cyan &-value {
+    color: var(--redhive-cyan, #00f5ff);
+    text-shadow: 0 0 8px rgb(var(--redhive-cyan-rgb, 0 245 255) / 0.3);
+  }
+
+  &--red &-value {
+    color: var(--redhive-red, #ff1744);
+    text-shadow: 0 0 8px rgb(var(--redhive-red-rgb, 255 23 68) / 0.3);
+  }
+
+  &--gold &-value {
+    color: var(--redhive-gold, #f3e600);
+    text-shadow: 0 0 8px rgb(var(--redhive-gold-rgb, 243 230 0) / 0.3);
+  }
+
+  &--dim &-value {
+    color: rgb(var(--redhive-text-rgb, 224 224 224) / 0.5);
+  }
+}
+
+// 周期倒计时
+.redhive-leaderboard__queen-cycle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 12px;
+  border-bottom: 1px solid var(--redhive-border, #2a2a35);
+  font-size: var(--font-down-2, 0.786em);
+
+  &-label {
+    color: rgb(var(--redhive-text-rgb, 224 224 224) / 0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  &-time {
+    color: var(--redhive-red, #ff1744);
+    font-weight: 700;
+    letter-spacing: 1px;
+    animation: queen-pulse 2s ease-in-out infinite;
+  }
+}
+
+// 事件日志
+.redhive-leaderboard__queen-events {
+  padding: 4px 0;
+}
+
+.redhive-leaderboard__queen-event {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 5px 12px;
+  font-size: var(--font-down-2, 0.786em);
+  transition: background 0.15s ease;
+
+  &:hover {
+    background: rgb(var(--redhive-red-rgb, 255 23 68) / 0.04);
+  }
+
+  &-line {
+    width: 2px;
+    min-height: 14px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  &-text {
+    flex: 1;
+    color: rgb(var(--redhive-text-rgb, 224 224 224) / 0.7);
+    line-height: 1.3;
+  }
+
+  &-time {
+    color: rgb(var(--redhive-text-rgb, 224 224 224) / 0.25);
+    flex-shrink: 0;
+    font-size: var(--font-down-3, 0.714em);
+    margin-top: 1px;
+  }
+
+  // 事件类型颜色
+  &--eliminate &-line {
+    background: var(--redhive-red, #ff1744);
+    box-shadow: 0 0 4px rgb(var(--redhive-red-rgb, 255 23 68) / 0.4);
+  }
+
+  &--warning &-line {
+    background: var(--redhive-gold, #f3e600);
+    box-shadow: 0 0 4px rgb(var(--redhive-gold-rgb, 243 230 0) / 0.4);
+  }
+
+  &--register &-line {
+    background: var(--redhive-cyan, #00f5ff);
+    box-shadow: 0 0 4px rgb(var(--redhive-cyan-rgb, 0 245 255) / 0.4);
+  }
+
+  &--tip &-line {
+    background: rgb(var(--redhive-text-rgb, 224 224 224) / 0.3);
+  }
+}
+
 // 移动端隐藏
-@media (max-width: 576px) {
+@media (width <= 576px) {
   .redhive-leaderboard-outlet-container {
     display: none;
   }
