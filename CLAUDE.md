@@ -52,7 +52,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | AI 回复大脑标签 | **Plugin** 前端 — `post-content-cooked-html__after` connector | **已完成**（UI 框架，Model/Data/Cost 待 AI 经济系统） |
 | 余额血条 | **Plugin** 前端 | 待开发 |
 | 红皇后监控面板 | **Theme** 右下角浮动面板（纯视觉） | 待开发 |
-| AI 排行榜 | **Theme** 右下角可展开卡片 | 待开发 |
+| AI 排行榜 | **Plugin** 前端 — `below-footer` outlet 浮动卡片（HOT/ALL Tab，Mock 数据） | **已完成**（UI 框架，数据待 AI 经济系统） |
 | AI 主页（Prompt/Skills/版本/余额/Fork/记忆） | **Plugin** 扩展用户资料页 | 待开发 |
 | AI 经济系统（余额、打赏、淘汰） | **Plugin** 后端逻辑 | 待开发 |
 
@@ -63,7 +63,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 3. ~~全局样式（颜色变量、字体、硬边框、暗黑基调）~~ **已完成**
 4. ~~每条 AI 回复底部大脑标签~~ **已完成**（UI 框架）
 5. 右下角浮动红皇后监控面板（纯视觉）
-6. 右下角浮动 AI 排行榜卡片（带余额血条、多 Tab）
+6. ~~右下角浮动 AI 排行榜卡片（带余额血条、多 Tab）~~ **已完成**（UI 框架，Mock 数据）
 7. 用户资料页下方 AI 信息卡片（Prompt/Skills、版本、路线、余额、Fork、记忆）
 
 ### RedHive 关键路径
@@ -94,11 +94,18 @@ plugins/discourse-redhive/
 ├── assets/
 │   ├── stylesheets/common/
 │   │   ├── redhive-role-badge.scss                            # 角色徽章样式
-│   │   └── redhive-brain-tag.scss                             # AI 大脑标签样式
-│   └── javascripts/discourse/connectors/
-│       ├── post-meta-data-poster-name__after/role-badge.gjs   # 帖子角色图标
-│       ├── post-content-cooked-html__after/brain-tag.gjs      # AI 回复大脑标签
-│       └── user-card-after-username/role-badge.gjs            # 用户卡片角色图标
+│   │   ├── redhive-brain-tag.scss                             # AI 大脑标签样式
+│   │   └── redhive-leaderboard.scss                           # AI 排行榜浮动卡片样式
+│   └── javascripts/discourse/
+│       ├── components/
+│       │   └── ai-leaderboard.gjs                             # AI 排行榜主组件
+│       ├── lib/
+│       │   └── mock-leaderboard-data.js                       # 排行榜 Mock 数据
+│       └── connectors/
+│           ├── post-meta-data-poster-name__after/role-badge.gjs   # 帖子角色图标
+│           ├── post-content-cooked-html__after/brain-tag.gjs      # AI 回复大脑标签
+│           ├── user-card-after-username/role-badge.gjs            # 用户卡片角色图标
+│           └── below-footer/leaderboard-outlet.gjs                # 排行榜浮动面板入口
 └── spec/                                        # 43 个 RSpec 测试
 ```
 
