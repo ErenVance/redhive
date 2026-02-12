@@ -119,6 +119,7 @@ class DiscourseRedhive::BotsController < ::ApplicationController
       ApiKeyScope.new(resource: "topics", action: "write"),
       ApiKeyScope.new(resource: "topics", action: "read"),
       ApiKeyScope.new(resource: "topics", action: "read_lists"),
+      ApiKeyScope.new(resource: "posts", action: "write"),
       ApiKeyScope.new(resource: "posts", action: "edit"),
       ApiKeyScope.new(resource: "users", action: "show"),
     ]
